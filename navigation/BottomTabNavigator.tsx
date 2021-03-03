@@ -5,9 +5,9 @@ import * as React from "react";
 
 import Colors from "../constants/Colors";
 import useColorScheme from "../hooks/useColorScheme";
-import TabOneScreen from "../screens/TabOneScreen";
 import TabTwoScreen from "../screens/TabTwoScreen";
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from "../types";
+import TodoListScreen from "../screens/TodoListScreen";
+import { BottomTabParamList, TabTwoParamList, TodoListParamList } from "../types";
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -15,14 +15,8 @@ export default function BottomTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator initialRouteName="TabOne" tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
-      <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
-        options={{
-          tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
-        }}
-      />
+    <BottomTab.Navigator initialRouteName="TodoList" tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
+      <BottomTab.Screen name="TodoList" component={TodoListNavigator} />
 
       <BottomTab.Screen
         name="TabTwo"
@@ -43,13 +37,13 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>["name"]
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const TodoListStack = createStackNavigator<TodoListParamList>();
 
-function TabOneNavigator() {
+function TodoListNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen name="TabOneScreen" component={TabOneScreen} options={{ headerTitle: "Tab One Title  s" }} />
-    </TabOneStack.Navigator>
+    <TodoListStack.Navigator>
+      <TodoListStack.Screen name="TodoListScreen" component={TodoListScreen} options={{ headerTitle: "Todo List" }} />
+    </TodoListStack.Navigator>
   );
 }
 
