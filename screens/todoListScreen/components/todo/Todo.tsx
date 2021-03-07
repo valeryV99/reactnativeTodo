@@ -1,12 +1,12 @@
 import * as React from "react";
-import { Button } from "react-native-elements";
+import { Text, View } from "react-native";
+import styles from "./styles";
 
 const Todo = () => {
   return (
-    <>
-      <Button title="My Button" />
-      <Button title="My 2nd Button" />
-    </>
+    <View style={styles.root}>
+      <Text>Centered text</Text>
+    </View>
   );
 };
 

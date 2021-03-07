@@ -1,6 +1,7 @@
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
+  CreateTodoScreen: undefined;
 };
 
 export type BottomTabParamList = {

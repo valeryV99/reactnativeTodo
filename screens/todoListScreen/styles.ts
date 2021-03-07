@@ -3,16 +3,19 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
+  scrollView: {
+    backgroundColor: "pink",
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
+  text: {
+    fontSize: 42,
+  },
+  icon: {
+    color: "#f66",
+  },
+  buttonWrapper: {
+    position: "absolute",
+    bottom: 10,
+    alignSelf: "center",
   },
 });

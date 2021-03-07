@@ -1,13 +1,18 @@
+import { useNavigation } from "@react-navigation/native";
 import React, { useCallback, useEffect } from "react";
-import { SafeAreaView, ScrollView, StyleSheet } from "react-native";
+import { SafeAreaView, ScrollView, View } from "react-native";
+import { Button } from "react-native-elements";
+import Icon from "react-native-vector-icons/AntDesign";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSampleList } from "../../actions/sample";
 import { AppState } from "../../store";
-import Todo from "./components/todo/Todo";
+import Todo from "./components/todo";
+import styles from "./styles";
 
-export default function TodoListScreen() {
+const TodoListScreen = () => {
   const dispatch = useDispatch();
-  const sampleList = useCallback(() => dispatch(fetchSampleList(undefined)), []);
+  const navigation = useNavigation();
+  const sampleList = useCallback(() => dispatch(fetchSampleList()), []);
   const smaples = useSelector((state: AppState) => state.samples);
   useEffect(() => {
     sampleList();
@@ -19,18 +24,15 @@ export default function TodoListScreen() {
       <ScrollView style={styles.scrollView}>
         <Todo />
       </ScrollView>
+      <View style={styles.buttonWrapper}>
+        <Button
+          onPress={() => navigation.navigate("CreateTodoScreen")}
+          type="clear"
+          icon={<Icon name="pluscircle" size={50} color="white" style={styles.icon} />}
+        />
+      </View>
     </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    backgroundColor: "pink",
-  },
-  text: {
-    fontSize: 42,
-  },
-});
+export default TodoListScreen;

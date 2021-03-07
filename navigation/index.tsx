@@ -2,31 +2,31 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
+import CreateTodoScreen from "../screens/createTodoScreen";
 
-import NotFoundScreen from "../screens/notFoundscreen";
+import NotFoundScreen from "../screens/notFoundScreen";
 import { RootStackParamList } from "../types";
 import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 
-// If you are not familiar with React Navigation, we recommend going through the
-// "Fundamentals" guide: https://reactnavigation.org/docs/getting-started
-export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
-  return (
-    <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <RootNavigator />
-    </NavigationContainer>
-  );
-}
-
-// A root stack navigator is often used for displaying modals on top of all other content
-// Read more here: https://reactnavigation.org/docs/modal
 const Stack = createStackNavigator<RootStackParamList>();
 
-function RootNavigator() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
-    </Stack.Navigator>
-  );
-}
+const RootNavigator = () => (
+  <Stack.Navigator screenOptions={{ headerShown: false }}>
+    <Stack.Screen name="Root" component={BottomTabNavigator} />
+    <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+    <Stack.Screen
+      name="CreateTodoScreen"
+      component={CreateTodoScreen}
+      options={{ headerTitle: "Create Todo", headerShown: true, headerBackTitle: "back" }}
+    />
+  </Stack.Navigator>
+);
+
+const Navigation = ({ colorScheme }: { colorScheme: ColorSchemeName }) => (
+  <NavigationContainer linking={LinkingConfiguration} theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+    <RootNavigator />
+  </NavigationContainer>
+);
+
+export default Navigation;

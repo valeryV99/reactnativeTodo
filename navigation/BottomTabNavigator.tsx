@@ -11,7 +11,27 @@ import { BottomTabParamList, TabTwoParamList, TodoListParamList } from "../types
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
-export default function BottomTabNavigator() {
+const TabBarIcon = (props: { name: React.ComponentProps<typeof Ionicons>["name"]; color: string }) => (
+  <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />
+);
+
+const TodoListStack = createStackNavigator<TodoListParamList>();
+
+const TodoListNavigator = () => (
+  <TodoListStack.Navigator>
+    <TodoListStack.Screen name="TodoListScreen" component={TodoListScreen} options={{ headerTitle: "Todo List" }} />
+  </TodoListStack.Navigator>
+);
+
+const TabTwoStack = createStackNavigator<TabTwoParamList>();
+
+const TabTwoNavigator = () => (
+  <TabTwoStack.Navigator>
+    <TabTwoStack.Screen name="TabTwoScreen" component={TabTwoScreen} options={{ headerTitle: "Tab Two Title" }} />
+  </TabTwoStack.Navigator>
+);
+
+const BottomTabNavigator = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -27,32 +47,6 @@ export default function BottomTabNavigator() {
       />
     </BottomTab.Navigator>
   );
-}
+};
 
-// You can explore the built-in icon families and icons on the web at:
-// https://icons.expo.fyi/
-function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>["name"]; color: string }) {
-  return <Ionicons size={30} style={{ marginBottom: -3 }} {...props} />;
-}
-
-// Each tab has its own navigation stack, you can read more about this pattern here:
-// https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TodoListStack = createStackNavigator<TodoListParamList>();
-
-function TodoListNavigator() {
-  return (
-    <TodoListStack.Navigator>
-      <TodoListStack.Screen name="TodoListScreen" component={TodoListScreen} options={{ headerTitle: "Todo List" }} />
-    </TodoListStack.Navigator>
-  );
-}
-
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
-
-function TabTwoNavigator() {
-  return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen name="TabTwoScreen" component={TabTwoScreen} options={{ headerTitle: "Tab Two Title" }} />
-    </TabTwoStack.Navigator>
-  );
-}
+export default BottomTabNavigator;
