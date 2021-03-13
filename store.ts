@@ -1,8 +1,9 @@
 export interface AppState {
-  samples: Sample[];
+  todos: Todo[];
 }
 
-export interface Sample {
-  prop1: string;
-  prop2: string;
+export interface Todo {
+  text: string;
+  id: number;
+  audioUri?: string | null;
 }

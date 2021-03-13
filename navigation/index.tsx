@@ -4,21 +4,23 @@ import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import CreateTodoScreen from "../screens/createTodoScreen";
 
-import NotFoundScreen from "../screens/notFoundScreen";
+import TodoListScreen from "../screens/todoListScreen";
 import { RootStackParamList } from "../types";
-import BottomTabNavigator from "./BottomTabNavigator";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 const RootNavigator = () => (
-  <Stack.Navigator screenOptions={{ headerShown: false }}>
-    <Stack.Screen name="Root" component={BottomTabNavigator} />
-    <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: "Oops!" }} />
+  <Stack.Navigator mode="modal" screenOptions={{ headerShown: false }}>
+    <Stack.Screen
+      name="TodoListScreen"
+      component={TodoListScreen}
+      options={{ headerTitle: "Todo List", headerShown: true }}
+    />
     <Stack.Screen
       name="CreateTodoScreen"
       component={CreateTodoScreen}
-      options={{ headerTitle: "Create Todo", headerShown: true, headerBackTitle: "back" }}
+      options={{ headerTitle: "Create Todo", headerShown: false, headerBackTitle: "cancel" }}
     />
   </Stack.Navigator>
 );

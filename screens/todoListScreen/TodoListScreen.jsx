@@ -1,40 +1,41 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var react_1 = require("react");
+var native_1 = require("@react-navigation/native");
+var React = require("react");
 var react_native_1 = require("react-native");
-var editScreenInfo_1 = require("../../components/editScreenInfo");
-var Themed_1 = require("../../components/Themed");
+var react_native_elements_1 = require("react-native-elements");
+var AntDesign_1 = require("react-native-vector-icons/AntDesign");
 var react_redux_1 = require("react-redux");
 var sample_1 = require("../../actions/sample");
-function TodoListScreen() {
+var usePlayAudio_1 = require("../../hooks/usePlayAudio");
+var styles_1 = require("./styles");
+var TodoListScreen = function () {
+    var navigation = native_1.useNavigation();
+    var todos = react_redux_1.useSelector(function (state) { return state.todos; });
     var dispatch = react_redux_1.useDispatch();
-    var sampleList = react_1.useCallback(function () { return dispatch(sample_1.fetchSampleList(undefined)); }, []);
-    var smaples = react_redux_1.useSelector(function (state) { return state.samples; });
-    react_1.useEffect(function () {
-        sampleList();
-    }, []);
-    // tslint:disable-next-line:no-console
-    react_1.useEffect(function () { return console.log(smaples, "smaples"); }, [smaples]);
-    return (<Themed_1.View style={styles.container}>
-      <Themed_1.Text style={styles.title}>Todo List</Themed_1.Text>
-      <Themed_1.View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)"/>
-      <editScreenInfo_1.default path="/screens/TodoListScreen.tsx"/>
-    </Themed_1.View>);
-}
+    var playAudio = usePlayAudio_1.default();
+    var removeTodo = function (id) { return dispatch(sample_1.deleteTodo(id)); };
+    return (<react_native_1.SafeAreaView style={styles_1.default.container}>
+      <react_native_1.ScrollView style={styles_1.default.scrollView}>
+        {todos.map(function (item) {
+            return (<react_native_1.View key={item.id} style={styles_1.default.todo}>
+              <react_native_1.View style={{ position: "absolute", right: 10, top: 10, zIndex: 2 }}>
+                <AntDesign_1.default onPress={function () { return removeTodo(item.id); }} name="delete" size={20} color="red"/>
+              </react_native_1.View>
+              <react_native_1.View style={styles_1.default.todoDescriptionWrapper}>
+                <react_native_elements_1.Text style={styles_1.default.todoDescriptionLabel}>Todo description:</react_native_elements_1.Text>
+                <react_native_elements_1.Text style={styles_1.default.todoDescriptionText}>{item.text}</react_native_elements_1.Text>
+              </react_native_1.View>
+              {(item === null || item === void 0 ? void 0 : item.audioUri) && (<react_native_1.View style={styles_1.default.audioWrapper}>
+                  <react_native_elements_1.Text style={styles_1.default.audioLabel}>Audio:</react_native_elements_1.Text>
+                  <AntDesign_1.default name="play" onPress={function () { return playAudio(item.audioUri); }} color="blue" size={20}/>
+                </react_native_1.View>)}
+            </react_native_1.View>);
+        })}
+      </react_native_1.ScrollView>
+      <react_native_1.View style={styles_1.default.buttonWrapper}>
+        <AntDesign_1.default name="pluscircle" size={50} color="white" style={styles_1.default.icon} onPress={function () { return navigation.navigate("CreateTodoScreen"); }}/>
+      </react_native_1.View>
+    </react_native_1.SafeAreaView>);
+};
 exports.default = TodoListScreen;
-var styles = react_native_1.StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    title: {
-        fontSize: 20,
-        fontWeight: "bold",
-    },
-    separator: {
-        marginVertical: 30,
-        height: 1,
-        width: "80%",
-    },
-});

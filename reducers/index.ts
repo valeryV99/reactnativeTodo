@@ -1,1 +1,1 @@
-export { sampleReducer as samples } from "./sample";
+export { todoReducer as todos } from "./todos";
