@@ -1,4 +1,4 @@
-import * as actions from "../actions/sample";
+import * as actions from "../actions/todo";
 import { Todo } from "../store";
 import { INITIAL_STATE } from "./initialState";
 

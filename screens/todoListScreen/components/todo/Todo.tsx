@@ -2,7 +2,7 @@ import * as React from "react";
 import { Text, View } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 import { useDispatch } from "react-redux";
-import { deleteTodo } from "../../../../actions/sample";
+import { deleteTodo } from "../../../../actions/todo";
 import usePlayAudio from "../../../../hooks/usePlayAudio";
 import { Todo as TodoProps } from "../../../../store";
 import styles from "./styles";

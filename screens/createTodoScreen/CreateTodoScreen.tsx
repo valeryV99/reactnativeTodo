@@ -8,7 +8,7 @@ import { View } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
-import { createTodo } from "../../actions/sample";
+import { createTodo } from "../../actions/todo";
 import usePlayAudio from "../../hooks/usePlayAudio";
 import styles from "./styles";
 
@@ -39,6 +39,7 @@ const CreateTodoScreen = () => {
   const { text, audioUri } = watch();
   useEffect(() => {
     register("text");
+    register("audioUri");
   }, []);
 
   const onChange = useCallback(value => setValue("text", value), []);

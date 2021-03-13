@@ -1,6 +1,6 @@
 import { SagaIterator } from "redux-saga";
 import { put, takeLatest } from "redux-saga/effects";
-import * as actions from "../actions/sample";
+import * as actions from "../actions/todo";
 
 function* deleteTodo(action): SagaIterator {
   yield put(actions.deleteFromTodoList(action.payload));
