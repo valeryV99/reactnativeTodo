@@ -15,6 +15,7 @@
     "no-reference": false,
     "curly": true,
     "indent": [true, "spaces"],
+    "no-relative-imports": true,
     "no-conditional-assignment": true,
     "no-debugger": true,
     "no-console": [true, "log", "debug", "info", "time", "timeEnd", "trace"],

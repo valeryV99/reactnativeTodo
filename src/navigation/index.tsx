@@ -2,10 +2,10 @@ import { DarkTheme, DefaultTheme, NavigationContainer } from "@react-navigation/
 import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
-import CreateTodoScreen from "../screens/createTodoScreen";
+import CreateTodoScreen from "src/screens/createTodoScreen";
 
-import TodoListScreen from "../screens/todoListScreen";
-import { RootStackParamList } from "../types";
+import TodoListScreen from "src/screens/todoListScreen";
+import { RootStackParamList } from "src/types";
 import LinkingConfiguration from "./LinkingConfiguration";
 
 const Stack = createStackNavigator<RootStackParamList>();

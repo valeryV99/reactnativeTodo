@@ -5,12 +5,12 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider } from "react-redux";
 import { applyMiddleware, combineReducers, createStore } from "redux";
 import createSagaMiddleware from "redux-saga";
-import useCachedResources from "./hooks/useCachedResources";
-import useColorScheme from "./hooks/useColorScheme";
-import Navigation from "./navigation";
-import * as reducers from "./reducers";
-import { INITIAL_STATE } from "./reducers/initialState";
-import { rootSaga } from "./sagas";
+import { INITIAL_STATE } from "src/reducers/initialState";
+import { rootSaga } from "src/sagas";
+import useCachedResources from "./src/hooks/useCachedResources";
+import useColorScheme from "./src/hooks/useColorScheme";
+import Navigation from "./src/navigation";
+import * as reducers from "./src/reducers";
 
 const sagaMiddleware = createSagaMiddleware();
 const rootReducer = combineReducers(reducers);

@@ -4,7 +4,7 @@ import { ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Icon from "react-native-vector-icons/AntDesign";
 import { useSelector } from "react-redux";
-import { AppState } from "../../store";
+import { AppState } from "src/store";
 import Todo from "./components/todo";
 import styles from "./styles";
 

@@ -8,8 +8,8 @@ import { View } from "react-native";
 import { Button, Input } from "react-native-elements";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useDispatch } from "react-redux";
-import { createTodo } from "../../actions/todo";
-import usePlayAudio from "../../hooks/usePlayAudio";
+import { createTodoSaga } from "src/actions/todo";
+import usePlayAudio from "src/hooks/usePlayAudio";
 import styles from "./styles";
 
 interface CreateTodoForm {
@@ -43,7 +43,7 @@ const CreateTodoScreen = () => {
   }, []);
 
   const onChange = useCallback(value => setValue("text", value), []);
-  const addTodo = useCallback(() => dispatch(createTodo({ text, id: Date.now(), audioUri })), [text, audioUri]);
+  const addTodo = useCallback(() => dispatch(createTodoSaga({ text, id: Date.now(), audioUri })), [text, audioUri]);
 
   const toTodoListScreen = useCallback(() => navigation.navigate("TodoListScreen"), []);
   const saveTodo = () => {
